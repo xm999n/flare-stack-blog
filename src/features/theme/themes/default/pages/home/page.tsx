@@ -41,9 +41,8 @@ export function HomePage({ posts, pinnedPosts }: HomePageProps) {
       {/* Intro Section */}
       <section className="space-y-8">
         <header className="space-y-6">
-          <h1 className="text-4xl md:text-5xl font-serif font-medium tracking-tight text-foreground flex items-center gap-4">
-            {m.home_greeting()}{" "}
-            <span className="animate-wave origin-[70%_70%]">👋</span>
+          <h1 className="text-4xl md:text-5xl font-serif font-medium tracking-tight text-foreground">
+            {m.home_greeting()}
           </h1>
 
           {(author || description) && (
