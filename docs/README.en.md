@@ -192,8 +192,8 @@ Please refer to the **[Flare Stack Blog Deployment Guide](./deployment-guide.en.
 | `BETTER_AUTH_SECRET`         | Runtime | Session encryption key. Generate using `openssl rand -hex 32`        |
 | `BETTER_AUTH_URL`            | Runtime | Application URL (e.g., `https://blog.example.com`)                   |
 | `ADMIN_EMAIL`                | Runtime | Administrator's email address                                        |
-| `GITHUB_CLIENT_ID`           | Runtime | GitHub OAuth Client ID                                               |
-| `GITHUB_CLIENT_SECRET`       | Runtime | GitHub OAuth Client Secret                                           |
+| `GITHUB_CLIENT_ID`           | Runtime | GitHub OAuth Client ID. In GitHub Actions Secrets, create this as `GH_CLIENT_ID` |
+| `GITHUB_CLIENT_SECRET`       | Runtime | GitHub OAuth Client Secret. In GitHub Actions Secrets, create this as `GH_CLIENT_SECRET` |
 | `CLOUDFLARE_ZONE_ID`         | Runtime | Cloudflare Zone ID                                                   |
 | `CLOUDFLARE_PURGE_API_TOKEN` | Runtime | API token with Purge CDN permissions                                 |
 | `DOMAIN`                     | Runtime | Blog's domain (e.g., `blog.example.com`)                             |
@@ -205,7 +205,7 @@ Please refer to the **[Flare Stack Blog Deployment Guide](./deployment-guide.en.
 | `THEME`                   | Build-time | Theme name, defaults to `default`. Refer to [Available Themes](#available-themes).                       |
 | `TURNSTILE_SECRET_KEY`    | Runtime    | Cloudflare Turnstile Secret Key for CAPTCHA.                                                             |
 | `VITE_TURNSTILE_SITE_KEY` | Build-time | Cloudflare Turnstile Site Key.                                                                           |
-| `GITHUB_TOKEN`            | Runtime    | GitHub API Token (for version updates checking to avoid rate limits).                                    |
+| `GITHUB_TOKEN`            | Runtime    | GitHub API Token (for version updates checking to avoid rate limits). In GitHub Actions Secrets, create this as `GH_TOKEN`. |
 | `LOCALE`                  | Runtime    | Default language: `zh` or `en`. Default: `zh`. Used for emails, webhooks, and background task messaging. |
 | `CDN_DOMAIN`              | Runtime    | Standalone CDN domain (e.g., `cdn.example.com`), preferentially used during purge.                       |
 | `PAGEVIEW_SALT`           | Runtime    | Salt for anonymizing pageview visitor hashes. Generate with `openssl rand -hex 16`.                      |

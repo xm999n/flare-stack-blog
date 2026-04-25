@@ -7,6 +7,8 @@ import { m } from "@/paraglide/messages";
 
 export function Profile() {
   const { siteConfig } = useRouteContext({ from: "__root__" });
+  const author = siteConfig.author.trim();
+  const description = siteConfig.description.trim();
 
   return (
     <div className="fuwari-card-base p-4">
@@ -23,16 +25,18 @@ export function Profile() {
         />
       </Link>
       <div className="px-2 text-center">
-        <div className="font-bold text-xl fuwari-text-90 mb-1">
-          {siteConfig.author}
-        </div>
-        <div
-          className="h-1 w-5 rounded-full mx-auto mb-2"
-          style={{ backgroundColor: "var(--fuwari-primary)" }}
-        />
-        <div className="fuwari-text-50 text-sm mb-2.5">
-          {siteConfig.description}
-        </div>
+        {author && (
+          <div className="font-bold text-xl fuwari-text-90 mb-1">{author}</div>
+        )}
+        {(author || description) && (
+          <div
+            className="h-1 w-5 rounded-full mx-auto mb-2"
+            style={{ backgroundColor: "var(--fuwari-primary)" }}
+          />
+        )}
+        {description && (
+          <div className="fuwari-text-50 text-sm mb-2.5">{description}</div>
+        )}
         <div className="flex flex-wrap gap-2 justify-center">
           {siteConfig.social
             .filter((link) => link.url)

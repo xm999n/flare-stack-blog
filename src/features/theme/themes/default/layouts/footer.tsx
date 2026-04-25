@@ -12,21 +12,27 @@ interface FooterProps {
 
 export function Footer({ navOptions }: FooterProps) {
   const { siteConfig } = useRouteContext({ from: "__root__" });
+  const author = siteConfig.author.trim();
+  const navBarName = siteConfig.theme.default.navBarName.trim();
 
   return (
     <footer className="border-t border-border/40 bg-background/50 py-16 mt-32">
       <div className="max-w-3xl mx-auto px-6 md:px-0 flex flex-col md:flex-row justify-between items-center gap-8">
         {/* Brand / Copyright */}
         <div className="flex flex-col items-center md:items-start gap-2">
-          <span className="font-serif text-lg font-bold tracking-tighter text-foreground">
-            [ {siteConfig.theme.default.navBarName} ]
-          </span>
+          {navBarName && (
+            <span className="font-serif text-lg font-bold tracking-tighter text-foreground">
+              [ {navBarName} ]
+            </span>
+          )}
           <span className="font-mono text-[10px] text-muted-foreground tracking-widest uppercase">
             <ClientOnly fallback="-">
-              {m.footer_copyright({
-                year: new Date().getFullYear().toString(),
-                author: siteConfig.author,
-              })}
+              {author
+                ? m.footer_copyright({
+                    year: new Date().getFullYear().toString(),
+                    author,
+                  })
+                : `\u00a9 ${new Date().getFullYear().toString()}. All Rights Reserved.`}
             </ClientOnly>
           </span>
         </div>

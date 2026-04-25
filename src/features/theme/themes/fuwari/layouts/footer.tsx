@@ -8,6 +8,7 @@ interface FooterProps {
 
 export function Footer(_: FooterProps) {
   const { siteConfig } = useRouteContext({ from: "__root__" });
+  const author = siteConfig.author.trim();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -16,10 +17,12 @@ export function Footer(_: FooterProps) {
       <div className="border-dashed border-black/10 dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-6 py-8">
         <div className="fuwari-text-50 text-sm text-center">
           <ClientOnly fallback="-">
-            {m.footer_copyright({
-              year: currentYear.toString(),
-              author: siteConfig.author,
-            })}
+            {author
+              ? m.footer_copyright({
+                  year: currentYear.toString(),
+                  author,
+                })
+              : `\u00a9 ${currentYear.toString()}. All Rights Reserved.`}
           </ClientOnly>{" "}
           /{" "}
           <a

@@ -20,6 +20,7 @@ export function MobileMenu({
   logout,
 }: MobileMenuProps) {
   const { siteConfig } = useRouteContext({ from: "__root__" });
+  const navBarName = siteConfig.theme.default.navBarName.trim();
 
   return (
     <div
@@ -43,11 +44,15 @@ export function MobileMenu({
       >
         {/* Header */}
         <div className="flex justify-between items-center">
-          <div className="flex flex-col">
-            <span className="font-serif text-2xl font-bold tracking-tighter text-foreground">
-              [ {siteConfig.theme.default.navBarName} ]
-            </span>
-          </div>
+          {navBarName ? (
+            <div className="flex flex-col">
+              <span className="font-serif text-2xl font-bold tracking-tighter text-foreground">
+                [ {navBarName} ]
+              </span>
+            </div>
+          ) : (
+            <div aria-hidden="true" />
+          )}
           <Button
             variant="ghost"
             size="icon"

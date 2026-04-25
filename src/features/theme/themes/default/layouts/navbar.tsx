@@ -20,6 +20,7 @@ export function Navbar({
   isLoading,
 }: NavbarProps) {
   const { siteConfig } = useRouteContext({ from: "__root__" });
+  const navBarName = siteConfig.theme.default.navBarName.trim();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -41,11 +42,15 @@ export function Navbar({
       >
         <div className="max-w-3xl mx-auto w-full px-6 md:px-0 flex items-center justify-between">
           {/* Left: Brand */}
-          <Link to="/" className="group select-none">
-            <span className="font-serif text-xl font-bold tracking-tighter text-foreground transition-colors group-hover:text-muted-foreground">
-              [ {siteConfig.theme.default.navBarName} ]
-            </span>
-          </Link>
+          {navBarName ? (
+            <Link to="/" className="group select-none">
+              <span className="font-serif text-xl font-bold tracking-tighter text-foreground transition-colors group-hover:text-muted-foreground">
+                [ {navBarName} ]
+              </span>
+            </Link>
+          ) : (
+            <div aria-hidden="true" />
+          )}
 
           {/* Center: Main Nav */}
           <nav className="hidden lg:flex items-center gap-8">

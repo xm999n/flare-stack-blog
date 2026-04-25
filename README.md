@@ -196,8 +196,8 @@ Flare Stack Blog 的所有面向用户的页面与布局均通过 **主题契约
 | `BETTER_AUTH_SECRET`         | 运行时 | 会话加密密钥，运行 `openssl rand -hex 32` 生成    |
 | `BETTER_AUTH_URL`            | 运行时 | 应用 URL（如 `https://blog.example.com`）         |
 | `ADMIN_EMAIL`                | 运行时 | 管理员邮箱                                        |
-| `GITHUB_CLIENT_ID`           | 运行时 | GitHub OAuth Client ID                            |
-| `GITHUB_CLIENT_SECRET`       | 运行时 | GitHub OAuth Client Secret                        |
+| `GITHUB_CLIENT_ID`           | 运行时 | GitHub OAuth Client ID；GitHub Actions Secret 请创建为 `GH_CLIENT_ID` |
+| `GITHUB_CLIENT_SECRET`       | 运行时 | GitHub OAuth Client Secret；GitHub Actions Secret 请创建为 `GH_CLIENT_SECRET` |
 | `CLOUDFLARE_ZONE_ID`         | 运行时 | Cloudflare Zone ID                                |
 | `CLOUDFLARE_PURGE_API_TOKEN` | 运行时 | 具有 Purge CDN 权限的 API Token                   |
 | `DOMAIN`                     | 运行时 | 博客域名（如 `blog.example.com`）                 |
@@ -209,7 +209,7 @@ Flare Stack Blog 的所有面向用户的页面与布局均通过 **主题契约
 | `THEME`                   | 构建时 | 主题名称，默认 `default`，详见 [可用主题](#可用主题)                                                      |
 | `TURNSTILE_SECRET_KEY`    | 运行时 | Cloudflare Turnstile 人机验证 Secret Key                                                                  |
 | `VITE_TURNSTILE_SITE_KEY` | 构建时 | Cloudflare Turnstile Site Key                                                                             |
-| `GITHUB_TOKEN`            | 运行时 | GitHub API Token（版本更新检查，避免限流）                                                                |
+| `GITHUB_TOKEN`            | 运行时 | GitHub API Token（版本更新检查，避免限流）；GitHub Actions Secret 请创建为 `GH_TOKEN`                     |
 | `LOCALE`                  | 运行时 | 默认语言，支持 `zh` / `en`，默认 `zh`；通知邮件、Webhook 文本和后台异步任务文案会使用该语言               |
 | `CDN_DOMAIN`              | 运行时 | 独立 CDN 域名（如 `cdn.example.com`），purge 时优先使用；须为当前 Zone 下通过 SaaS CNAME 接入的自定义域名 |
 | `ROUTE`                   | CI/CD  | 设为 `1` 时，GitHub Actions 部署自动改用 Cloudflare `routes` 模式                                        |

@@ -12,6 +12,8 @@ import { m } from "@/paraglide/messages";
 
 export function HomePage({ posts, pinnedPosts }: HomePageProps) {
   const { siteConfig } = useRouteContext({ from: "__root__" });
+  const author = siteConfig.author.trim();
+  const description = siteConfig.description.trim();
 
   const displayPosts = useMemo(() => {
     const pinned = (pinnedPosts ?? []).map((p) => ({ ...p, isPinned: true }));
@@ -44,16 +46,22 @@ export function HomePage({ posts, pinnedPosts }: HomePageProps) {
             <span className="animate-wave origin-[70%_70%]">👋</span>
           </h1>
 
-          <div className="space-y-4 max-w-2xl text-base md:text-lg text-muted-foreground font-light leading-relaxed">
-            <p>
-              {m.home_intro_prefix()}{" "}
-              <span className="text-foreground font-medium">
-                {siteConfig.author}
-              </span>
-              {m.home_intro_separator()}
-              {siteConfig.description}
-            </p>
-          </div>
+          {(author || description) && (
+            <div className="space-y-4 max-w-2xl text-base md:text-lg text-muted-foreground font-light leading-relaxed">
+              <p>
+                {author ? (
+                  <>
+                    {m.home_intro_prefix()}{" "}
+                    <span className="text-foreground font-medium">
+                      {author}
+                    </span>
+                    {description && m.home_intro_separator()}
+                  </>
+                ) : null}
+                {description}
+              </p>
+            </div>
+          )}
         </header>
 
         <div className="flex items-center gap-6 text-muted-foreground">
